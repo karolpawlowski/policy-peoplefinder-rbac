@@ -14,12 +14,20 @@ allowed {
 	data.roles[user_roles[index]].perms[path].allowed
 }
 
+allowed {
+    dir.is_manager_of(input.user.id, input.resource.id)
+}
+
 visible {
-	some index
-	data.roles[user_roles[index]].perms[path].visible
+    some index
+    data.roles[attributes.roles[index]].perms[path].visible
 }
 
 enabled {
-	some index
-	data.roles[user_roles[index]].perms[path].enabled
+    some index
+    data.roles[attributes.roles[index]].perms[path].enabled
+}
+
+enabled {
+    allowed
 }
